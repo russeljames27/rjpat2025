@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year My Love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Galaxy Background */
+        .galaxy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow: hidden;
+        }
+
+        .galaxy-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 81, 169, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(194, 97, 254, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(88, 166, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 90% 30%, rgba(255, 107, 237, 0.2) 0%, transparent 50%);
+            animation: galaxyShift 20s ease-in-out infinite;
+        }
+
+        @keyframes galaxyShift {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.8; transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Stars and Celestial Bodies */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-1000px) translateY(500px);
+                opacity: 0;
+            }
+        }
+
+        /* Nebula clouds */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: nebulaFloat 30s ease-in-out infinite;
+        }
+
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 40px) scale(0.9); }
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .login-box {
+            background: rgba(15, 20, 45, 0.9);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(138, 116, 249, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(138, 116, 249, 0.4), 
+                        inset 0 0 40px rgba(138, 116, 249, 0.1);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .login-box h2 {
+            background: linear-gradient(135deg, #c261fe, #58a6ff, #ff6beb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 21px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .login-box .subtitle {
+            color: #a8b2d1;
+            font-size: 1em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .login-box .hint {
+            background: rgba(88, 166, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            color: #a8b2d1;
+            font-size: 0.95em;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(138, 116, 249, 0.3);
+            border-radius: 15px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            text-align: center;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #8a74f9;
+            box-shadow: 0 0 20px rgba(138, 116, 249, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .login-box input::placeholder {
+            color: rgba(168, 178, 209, 0.5);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8a74f9, #c261fe);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 5px 25px rgba(138, 116, 249, 0.4);
+        }
+
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(138, 116, 249, 0.6);
+        }
+
+        .error-message {
+            color: #ff6beb;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.95em;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Main Page Styles */
+        .main-page {
+            display: none;
+        }
+
+        .main-page.active {
+            display: block;
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            background: rgba(138, 116, 249, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 116, 249, 0.3);
+            transition: all 0.3s;
+        }
+
+        .burger-menu:hover {
+            background: rgba(138, 116, 249, 0.3);
+            box-shadow: 0 0 20px rgba(138, 116, 249, 0.5);
+        }
+
+        .burger-line {
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, #8a74f9, #c261fe);
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        .burger-menu.open .burger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-8px, 6px);
+        }
+
+        .burger-menu.open .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.open .burger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-8px, -6px);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(15, 20, 45, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid rgba(138, 116, 249, 0.3);
+            z-index: 999;
+            transition: right 0.4s;
+            padding: 80px 30px 30px;
+            box-shadow: -5px 0 30px rgba(138, 116, 249, 0.3);
+        }
+
+        .menu-overlay.open {
+            right: 0;
+        }
+
+        .menu-overlay h3 {
+            background: linear-gradient(135deg, #c261fe, #58a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .menu-overlay ul {
+            list-style: none;
+        }
+
+        .menu-overlay li {
+            margin: 15px 0;
+        }
+
+        .menu-overlay a {
+            color: #a8b2d1;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .menu-overlay a:hover {
+            color: #c261fe;
+            transform: translateX(5px);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Cosmic Heart */
+        .heart-container {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .love-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            animation: cosmicPulse 2.5s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(255, 107, 237, 0.8),
+                        0 0 80px rgba(194, 97, 254, 0.6);
+            display: block;
+            margin: 0 auto;
+        }
+
+        @keyframes cosmicPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 40px rgba(255, 107, 237, 0.8),
+                            0 0 80px rgba(194, 97, 254, 0.6);
+            }
+            50% { 
+                transform: scale(1.08);
+                box-shadow: 0 0 60px rgba(255, 107, 237, 1),
+                            0 0 100px rgba(194, 97, 254, 0.8);
+            }
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #fff, #c261fe, #58a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin: 40px 0 20px;
+            text-shadow: 0 0 30px rgba(194, 97, 254, 0.5);
+            animation: fadeInDown 1s ease-out;
+            filter: drop-shadow(0 0 20px rgba(194, 97, 254, 0.5));
+        }
+
+        .year {
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 4em;
+            font-weight: bold;
+            animation: scaleIn 1s ease-out 0.3s backwards, glow 2s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)); }
+            50% { filter: drop-shadow(0 0 50px rgba(255, 215, 0, 1)); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .message-box {
+            background: rgba(15, 20, 45, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(138, 116, 249, 0.3);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(138, 116, 249, 0.4),
+                        inset 0 0 40px rgba(138, 116, 249, 0.1);
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-box p {
+            color: #a8b2d1;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .signature {
+            font-style: italic;
+            background: linear-gradient(135deg, #ff6beb, #c261fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3em;
+            margin-top: 30px;
+        }
+
+        /* Cosmic Particles */
+        .cosmic-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: floatParticle 10s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Constellation Lines */
+        .constellation {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-box h2 {
+                font-size: 1.6em;
+            }
+
+            .login-box .hint {
+                font-size: 0.9em;
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .year {
+                font-size: 3em;
+            }
+
+            .love-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .message-box {
+                padding: 25px 20px;
+            }
+
+            .message-box p {
+                font-size: 1em;
+            }
+
+            .signature {
+                font-size: 1.2em;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .menu-overlay {
+                width: 100%;
+                right: -100%;
+            }
+
+            .burger-menu {
+                top: 15px;
+                right: 15px;
+                padding: 12px;
+            }
+
+            .burger-line {
+                width: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-box h2 {
+                font-size: 1.4em;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .year {
+                font-size: 2.5em;
+            }
+
+            .message-box p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Galaxy Background -->
+    <div class="galaxy-bg"></div>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <h2>✨ For My One and Only Wife ✨</h2>
+            <p class="subtitle">Enter the password to unlock your cosmic surprise</p>
+            
+            <div class="hint">
+               Before 2025 ends, how many monthsaries will we have celebrated together in 2025?
+            </div>
+
+            <input type="password" id="passwordInput" placeholder="Enter password" maxlength="10">
+            <button onclick="checkPassword()">Unlock the Stars</button>
+            <p class="error-message" id="errorMessage">✨ Oops! That's not quite right. Think about our celestial journey...</p>
+        </div>
+    </div>
+
+    <!-- Main Page -->
+    <div class="main-page" id="mainPage">
+        <div class="stars" id="stars"></div>
+        <div class="cosmic-particles" id="cosmicParticles"></div>
+
+        <!-- Burger Menu -->
+        <div class="burger-menu" id="burgerMenu" onclick="toggleMenu()">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+
+        <div class="menu-overlay" id="menuOverlay">
+            <h3>✨ Menu</h3>
+            <ul>
+                <li><a href="index.html" onclick="toggleMenu()">🏠 Home</a></li>
+                <li><a href="monthsaries.php" onclick="toggleMenu()">💌 Monthsaries</a></li>
+                <li><a href="gallery.php" onclick="toggleMenu()">📸 Photo Gallery</a></li>
+                <li><a href="song.php" onclick="toggleMenu()">📀 Soundtracks</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <div class="heart-container">
+                <img src="us.jpg" alt="Our Love" class="love-image">
+            </div>
+
+            <h1>Happy New Year</h1>
+            <div class="year">2025</div>
+
+            <div class="message-box">
+                <p>To My One and Only Misis,</p>
+                <p>My love, as this year comes to an end and before the day of our 5th monthsary ends, I want you to know how grateful I am for you. You are the perfect wife I once only wished for. Thank you for coming into my life and choosing to stay, even through my flaws, insecurities, and struggles. You understood me, believed in me, and turned my dreams into reality. You gave my life meaning, purpose, and direction and for that, I will always be thankful.</p>
+                <p>Out of the billions of people in this world, I was blessed enough to find my soulmate. In a world where love is rare and difficult to find, I found mine in you. It will always be you, my wife. Thank you for building me, for loving me deeply, and for making me believe that I was meant for something more because I have you by my side.</p>
+                <p>I promise that we will face every challenge together, with love and patience, and that I will work toward the beautiful life we dream of for us and for the children we will raise. I love you so much, now and always. Please continue to love me as I will always love you—no giving up, ever.</p>
+
+                <p class="signature">Forever Yours Across the Stars ✨💫</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password check
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (input.value.toUpperCase() === 'FIVE') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainPage').classList.add('active');
+                initMainPage();
+            } else {
+                errorMessage.classList.add('show');
+                input.value = '';
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Enter key support
+        document.getElementById('passwordInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Burger menu toggle
+        function toggleMenu() {
+            const burgerMenu = document.getElementById('burgerMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            burgerMenu.classList.toggle('open');
+            menuOverlay.classList.toggle('open');
+        }
+
+        // Initialize main page animations
+        function initMainPage() {
+            // Create stars
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 2) + 's';
+                starsContainer.appendChild(star);
+            }
+
+            // Create shooting stars
+            function createShootingStar() {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.width = (100 + Math.random() * 200) + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 50 + '%';
+                star.style.animationDuration = (1 + Math.random() * 2) + 's';
+                starsContainer.appendChild(star);
+                
+                setTimeout(() => star.remove(), 3000);
+            }
+
+            setInterval(createShootingStar, 3000);
+
+            // Create nebula clouds
+            const colors = [
+                'rgba(138, 116, 249, 0.3)',
+                'rgba(194, 97, 254, 0.3)',
+                'rgba(88, 166, 255, 0.3)',
+                'rgba(255, 107, 237, 0.2)'
+            ];
+
+            for (let i = 0; i < 5; i++) {
+                const nebula = document.createElement('div');
+                nebula.className = 'nebula';
+                nebula.style.width = (200 + Math.random() * 300) + 'px';
+                nebula.style.height = (200 + Math.random() * 300) + 'px';
+                nebula.style.background = colors[Math.floor(Math.random() * colors.length)];
+                nebula.style.left = Math.random() * 100 + '%';
+                nebula.style.top = Math.random() * 100 + '%';
+                nebula.style.animationDelay = Math.random() * 10 + 's';
+                nebula.style.animationDuration = (20 + Math.random() * 20) + 's';
+                document.querySelector('.galaxy-bg').appendChild(nebula);
+            }
+
+            // Create cosmic particles
+            function createParticle() {
+                const particlesContainer = document.getElementById('cosmicParticles');
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                
+                const colors = ['#fff', '#8a74f9', '#c261fe', '#58a6ff', '#ff6beb'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 12000);
+            }
+
+            setInterval(createParticle, 500);
+        }
+    </script>
+</body>
+</html>
